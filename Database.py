@@ -11,7 +11,6 @@ class Database:
         try:
 
             print("Acaaaaaaa")
-            return True
         except:
-            return False
+            print("Error Generate DB")
 
