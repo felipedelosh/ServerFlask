@@ -4,10 +4,30 @@ This is a server to practice:
 
 Pipelines
 Databases
-Filter information via controller.
+Filter information via controller and database.
 
 
+________________________________________
+Instructions:
 
+Install: python3 -m pip install flask
+
+To RUN: execute archive main.py 
+        open postmain or navigator in route:
+        localhost:4000/health
+        and the server return the message.
+
+
+________________________________________
+Objetive:
+
+This server is create to add/get persons information. 
+Need filter all information and download in diferen formats
+
+.csv
+.zip
+
+______________________________________
 DB:
 
 Sqlite:
@@ -19,3 +39,5 @@ lastname str
 age int 
 gender str (M|F)
 location str
+_________________________________________
+
