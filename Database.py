@@ -15,7 +15,7 @@ class Database:
             name text,
             lastname text,
             age integer,
-            geneder text,
+            gender text,
             location text
         )
         """
@@ -47,7 +47,7 @@ class Database:
         personValues  = (str,str,int,str,str)
         """
         sql = """
-        insert into Person (name,lastname,age,geneder,location) values (?,?,?,?,?)
+        insert into Person (name,lastname,age,gender,location) values (?,?,?,?,?)
         """
         try:
             self.conection = sqlite3.connect("database.db")
@@ -62,13 +62,50 @@ class Database:
         sql = """
         select * from Person
         """
+        data = []
         try:
+            
             self.conection = sqlite3.connect("database.db")
             cursor = self.conection.execute(sql)
 
             for i in cursor:
-                print(i)
+                person = {}
+                # name,lastname,age,geneder,location
+                person["name"] = i[1]
+                person["lastname"] = i[2]
+                person["age"] = int(i[3])
+                person["gender"] = i[4]
+                person["location"] = i[5]
+                data.append(person)
+
+            cursor.close()
         except:
             print("Error To get All persons info")
         
+
         self.conection.close()
+        return data
+
+    def getCountOfPersons(self, information):
+        sql = """
+        select count(*) from Person
+        """
+        try:
+            self.conection = sqlite3.connect("database.db")
+            cursor = self.conection.execute(sql)
+
+            information['total_rows'] = str(cursor.fetchone()[0])
+            cursor.close()
+        except:
+            information['total_rows'] = "Error To Calculate"
+
+        self.conection.close()
+
+    def getStatitics(self):
+        information = {
+            "name_of_database" : "database.db"
+        }
+        self.getCountOfPersons(information)
+
+
+        return information

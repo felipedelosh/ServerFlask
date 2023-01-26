@@ -55,4 +55,15 @@ Routes:
 
 
 
+localhost:4000/ 
+
+Is the index route and return Json
+{
+ name of database,
+ quantity of rows in table persons
+}
+
+
+
+
 

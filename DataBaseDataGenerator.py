@@ -161,7 +161,6 @@ def getRandomPersonInfo():
 # Charge X persons in Database
 d = Database()
 for _ in range(0, 1000):
-    # Is Boy or Girl?
     personInfo = getRandomPersonInfo()
     d.insertPerson(personInfo)
     print(personInfo)
