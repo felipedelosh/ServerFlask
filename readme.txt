@@ -12,6 +12,11 @@ Instructions:
 
 Install: python3 -m pip install flask
 
+Before to RUN: Preprare the information DB      
+                - Erase file: database.db
+                - Run the Script: DataBaseDataGenerator.py 
+                - Verify the creation  of database.db 
+
 To RUN: execute archive main.py 
         open postmain or navigator in route:
         localhost:4000/health
@@ -22,7 +27,7 @@ ________________________________________
 Objetive:
 
 This server is create to add/get persons information. 
-Need filter all information and download in diferen formats
+Need filter all information and download in diferen formats via API
 
 .csv
 .zip
@@ -40,4 +45,14 @@ age int
 gender str (M|F)
 location str
 _________________________________________
+
+
+
+
+
+________________________________________
+Routes:
+
+
+
 
