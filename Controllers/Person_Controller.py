@@ -133,7 +133,7 @@ class Person_Controller:
             pf.write(headers+info_male)
 
         with open('FILES/persons_female.csv', 'w', encoding="UTF-8") as pf:
-            pf.write(headers+info_male)
+            pf.write(headers+info_female)
 
         
             

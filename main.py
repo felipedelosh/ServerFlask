@@ -50,18 +50,21 @@ def personToCSV():
 @app.route('/persons_by_sex.zip')
 def personToZIP():
     all_person_info = database.getAllPersonsInfo()
+    # Create a .csv
     personsController.getInformationPersonsTOSeparatedBySexZIP(all_person_info)
 
     FILEPATHs = ["FILES/persons_male.csv", "FILES/persons_female.csv"]
-    fileobj = io.BytesIO()
 
-    with zipfile.ZipFile(fileobj, 'w') as zip_file:
-        zip_info = zipfile.ZipInfo(FILEPATH)
-        zip_info.date_time = time.localtime(time.time())[:6]
-        zip_info.compress_type = zipfile.ZIP_DEFLATED
-        for i in FILEPATHs:
-            with open(i, 'rb') as fd:
-                zip_file.writestr(zip_info, fd.read())
+    fileobj = io.BytesIO() # Create in Memory
+
+    with zipfile.ZipFile(fileobj, 'w') as zf:
+        for individualFile in FILEPATHs:
+            data = zipfile.ZipInfo(individualFile)
+            data.date_time = time.localtime(time.time())[:6]
+            data.compress_type = zipfile.ZIP_DEFLATED
+            with open(individualFile, 'rb') as fd:
+                zf.writestr(data, fd.read())
+            
 
     fileobj.seek(0)
 
