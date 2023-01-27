@@ -5,6 +5,10 @@ FelipedelosH
 This class is create to manipulate and filter all information abouts persons
 
 """
+#To Download .csv
+import io
+import csv
+
 class Person_Controller:
     def __init__(self) -> None:
         pass
@@ -60,3 +64,28 @@ class Person_Controller:
         information['total_info_procesed'] = count
         
         return information
+
+    def getInformationPersonsForCSV(self, filters, data):
+        information = self.getPersons(filters, data)
+        csv_info = []
+        csv_info.append("ID|Name|lastName|Age|Gender|Location") 
+        
+        output = io.StringIO()
+        writer = csv.writer(output)
+        writer.writerow(csv_info)
+
+        counter_id = 0
+        for i in information["data"]:
+            id = str(counter_id)
+            name = str(i["name"])
+            lastName = str(i["lastname"])
+            age = str(i["age"])
+            gender = i["gender"]
+            location = i["location"]
+            writer.writerow([f"{id}|{name}|{lastName}|{age}|{gender}|{location}"])
+
+            counter_id = counter_id + 1
+
+        
+        output.seek(0)
+        return output

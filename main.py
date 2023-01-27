@@ -1,6 +1,9 @@
-from flask import Flask, request
+from flask import Flask, Response, request
 from Database import *
 from Controllers.Person_Controller import *
+
+
+
 
 app = Flask(__name__)
 database = Database()
@@ -21,9 +24,17 @@ def person():
         return personsController.getPersons(request.args, all_person_info)
 
     if request.method == 'POST':
-        return "Por POST"
+        return "Not available in POST"
 
     return "Estoy acaaaaa"
+
+@app.route('/person/download/csv')
+def personToCSV():
+    all_person_info = database.getAllPersonsInfo()
+    information = personsController.getInformationPersonsForCSV(request.args, all_person_info)
+
+    return Response(information, mimetype="text/csv", headers={"Content-Disposition": "attachment; filename=persons.csv"})
+
 
 #Start
 if __name__ == '__main__':
