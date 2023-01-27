@@ -16,14 +16,39 @@ class Person_Controller:
         count = 0
 
         filter_gender = "filter_gender" in filters
+        filter_age_up = "filter_age_up" in filters
+        filter_age_down = "filter_age_down" in filters
+        filter_location = "filter_location" in filters
+        
 
         for i in data:
             if filter_gender:
-                if i["gender"] == filters["filter_gender"]:
+                if str(i["gender"]).upper() == str(filters["filter_gender"]).upper():
                     count = count + 1
                     continue
 
-            
+            if filter_age_up:
+                try:
+                    if int(i["age"]) < int(filters["filter_age_up"]):
+                        count = count + 1
+                        continue
+                except:
+                    continue
+
+            if filter_age_down:
+                try:
+                    if int(i["age"]) > int(filters["filter_age_down"]):
+                        count = count + 1
+                        continue
+                except:
+                    continue
+
+            if filter_location:
+                if str(i["location"]).upper() != str(filters["filter_location"]).upper():
+                    count = count + 1
+                    continue
+
+            # If pass al filters save
             export_info.append(i)
     
             
@@ -35,4 +60,3 @@ class Person_Controller:
         information['total_info_procesed'] = count
         
         return information
-

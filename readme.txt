@@ -65,5 +65,23 @@ Is the index route and return Json
 
 
 
+localhost:4000/person
 
+GET
+>
+Return a Json with the correspont information about the persons
 
+Params to filter:
+filter_gender = String M or F return only diferent male or female registers
+filter_age_up = integer return only registers with age upper (exclusive)
+filter_age_down = integer return only registers with age down (exclusive)
+filter_location = String 
+
+Json to return:
+
+{
+ type_of_values : name of table "Person",
+ total_values : size of all returned registers,
+ total_info_procesed : size of skiped registers,
+ data : [{PersonData},{PersonData},{PersonData},{PersonData}...]
+}
