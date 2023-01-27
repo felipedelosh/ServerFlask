@@ -18,7 +18,7 @@ Before to RUN: Preprare the information DB
                 - Verify the creation  of database.db 
 
 To RUN: execute archive main.py 
-        open postmain or navigator in route:
+        open postman or navigator in route:
         localhost:4000/health
         and the server return the message.
 
@@ -29,9 +29,16 @@ Objetive:
 This server is create to add/get persons information. 
 Need filter all information and download in diferen formats via API
 
+
+![](/Docs/exmapleDownloadCSVPersons.png)
+
 .csv
-localhost:4000/person/download/csv
+localhost:4000/persons.csv
+
+
+![](/Docs/exampleDownloadZip.png)
 .zip
+localhost:4000/persons_by_sex.zip
 
 ______________________________________
 DB:
@@ -47,7 +54,16 @@ gender str (M|F)
 location str
 _________________________________________
 
+Filters:
 
+1 -> Filter via gender... Obtan all mens if add params: filter_gender = F
+                          Obtan all womaen if add params: filter_gender = m
+
+2 -> Filter via age... if you need persons more than 30yo put the filter : filter_age_up = 29
+                       if you need persons less than 50 yo put the filter: filter_age_down = 49
+                       and is posible to conbinate to obtain between.
+
+2 -> Filter via city location... If you need persons to area only put a filter: filter_location = city to need
 
 
 
@@ -89,7 +105,7 @@ Json to return:
 
 
 ++++++++++++++++++++++++++++++
-localhost:4000/person/download/csv
+localhost:4000/persons.csv
 
 Retrun a .csv file with filters Params
 
@@ -100,8 +116,16 @@ filter_age_down = integer return only registers with age down (exclusive)
 filter_location = String 
 
 
-.csv sepator via |
+.csv sepator via | "Pipeline"
 
 
 ++++++++++++++++++++++++++++++
+localhost:4000/persons_by_sex.zip
 
+Return 2 .csv file and contain:
+ persons_male.csv : all information about mens
+ persons_female.csv : all information about women
+
+
+
+DASENDE 
