@@ -1,13 +1,19 @@
-from flask import Flask, Response, request
+from flask import Flask, Response, request, render_template
 from Database import *
 from Controllers.Person_Controller import *
-
-
-
 
 app = Flask(__name__)
 database = Database()
 personsController = Person_Controller()
+
+
+@app.errorhandler(404)
+def not_found(error):
+    context = {
+        "error" : error
+    }
+
+    return render_template('404.html', **context)
 
 @app.route('/')
 def hello():

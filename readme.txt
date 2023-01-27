@@ -30,6 +30,7 @@ This server is create to add/get persons information.
 Need filter all information and download in diferen formats via API
 
 .csv
+localhost:4000/person/download/csv
 .zip
 
 ______________________________________
@@ -54,7 +55,7 @@ ________________________________________
 Routes:
 
 
-
+++++++++++++++++++++++++++++++
 localhost:4000/ 
 
 Is the index route and return Json
@@ -64,7 +65,7 @@ Is the index route and return Json
 }
 
 
-
+++++++++++++++++++++++++++++++
 localhost:4000/person
 
 GET
@@ -85,3 +86,22 @@ Json to return:
  total_info_procesed : size of skiped registers,
  data : [{PersonData},{PersonData},{PersonData},{PersonData}...]
 }
+
+
+++++++++++++++++++++++++++++++
+localhost:4000/person/download/csv
+
+Retrun a .csv file with filters Params
+
+Params to filter:
+filter_gender = String M or F return only diferent male or female registers
+filter_age_up = integer return only registers with age upper (exclusive)
+filter_age_down = integer return only registers with age down (exclusive)
+filter_location = String 
+
+
+.csv sepator via |
+
+
+++++++++++++++++++++++++++++++
+
